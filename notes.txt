@@ -1,0 +1,4 @@
+css shi karni hai
+gallery.html images shi karni hai
+home.html -> search shi karna hai aur css
+login.html-> signup php , remember me js

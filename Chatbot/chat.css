@@ -1,0 +1,124 @@
+/* Chat button styles */
+#open-chat-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#open-chat-btn:hover {
+    background-color: #005bb5;
+    transform: scale(1.1);
+}
+
+/* Chat container styles */
+#chat-container {
+    display: none; 
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 350px;
+    background-color: #3e3c3c;
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 15px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px); 
+}
+
+#chat-container.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0); 
+}
+
+/* Chatbox styles */
+#chat-box {
+    border: none;
+    padding: 10px;
+    height: 250px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* User input styles */
+#user-input {
+    width: calc(100% - 70px);
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-right: 10px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+#user-input:focus {
+    outline: none;
+    border-color: #0078d7;
+}
+
+/* Send button styles */
+button {
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+/* Chat message styles */
+.User, .Bot {
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.User {
+    background-color: #d0eaff;
+    text-align: left;
+    align-self: flex-start;
+    color: #0078d7;
+}
+
+.Bot {
+    background-color: #e8f5e9;
+    text-align: left;
+    align-self: flex-start;
+    color: #388e3c;
+}
+
+/* Chatbox scroll behavior */
+#chat-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+#chat-box::-webkit-scrollbar-thumb:hover {
+    background-color: #bbb;
+}

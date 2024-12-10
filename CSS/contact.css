@@ -1,0 +1,69 @@
+body {
+    /* background-image: url('../places/India/images/Gateway\ of\ india.jpg'); */
+    background-color: rgb(250, 226, 210);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    
+    padding-top: 65px;
+}
+
+.container{
+    margin: 1em auto;
+}
+
+/* #banner1{
+     box-shadow: 0 8px 8px 2px #bdbdbd;
+/*     margin: 3em auto;*/
+/* } */ 
+#banner2{
+    border:1px solid #eeeeee;
+    box-shadow: 0 5px 5px 2px #bdbdbd;
+}
+/*panel{
+    border: white !important;
+}*/
+
+.panel-heading{
+    color:white !important;
+    /* background-image: url('../places/loc4.jpg'); */
+    background-color: #687773!important;
+    text-align: center;
+}
+
+.panel-heading>h3{
+    display: block;
+  font-size: 1.17em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+#gray{
+    /* background-color: #414846;*/
+    background-image: url('../places/manali-index.jpg'); 
+    background-position: center;
+    color:#ffffff;
+    border: 1px solid #bdbdbd;
+    padding: 2em;
+}
+
+#names{
+    color: black;
+}
+#emails{
+    color: black;
+}
+#contacts{
+    color: black;
+}
+#messages{
+    color: black;
+}
+
+#foot{
+    margin-top: 136px;
+}

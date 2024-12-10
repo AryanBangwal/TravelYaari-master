@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+      integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../CSS/nav1.css" />
+    <link rel="stylesheet" href="../CSS/login.css" />
+    <link rel="stylesheet" href="../CSS/footer.css" />
+    <title>login | Tours And Travels</title>
+  </head>
+
+  <body>
+    <div id="navigation"></div>
+    <script>
+      $(document).ready(function () {
+        $("#navigation").load("nav0.html");
+      });
+    </script>
+    <section class="log">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-xs-12 col-md-4 col-md-offset-2">
+            <h1 class="text-center">Login</h1>
+            <form id="login-form">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Enter email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Enter password"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">
+                Login
+              </button>
+            </form>
+            <div style="margin-top: 1rem">
+              <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      $(document).ready(function () {
+        $("#foot").load("footer.html");
+      });
+
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault(); // Prevent form submission from refreshing the page
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          try {
+            const response = await fetch("http://localhost:3000/login", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              alert("Login successful!");
+              window.location.href = "home.html"; // Redirect to home page after successful login
+            } else {
+              alert(`Login failed: ${data.error}`);
+            }
+          } catch (error) {
+            console.error("Error during login:", error);
+            alert("Something went wrong!");
+          }
+        });
+    </script>
+  </body>
+</html>

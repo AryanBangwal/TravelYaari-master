@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="index-style/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/Chatbot/chat.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="index-style/main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tours And Travel</title>
+</head>
+
+<body class="scrollspy">
+    <a name="home"></a>
+    <div class="navbar-fixed">
+        <nav class="green">
+            <div class="container">
+                <a href="#home" class="brand-logo">Tours And Travel</a>
+                <a href="#" data-activates="mobile-nav" class="button-collapse">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul class="right hide-on-med-and-down">
+
+                    <li>
+                        <a href="#popular">Popular Places</a>
+                    </li>
+                    <!-- <li>
+                        <a href="html/places.html">Places</a>
+                    </li> -->
+                    <li>
+                        <a href="#gallery">Gallery</a>
+                    </li>
+                    <li>
+                        <a href="HTML/signup.html">Sign up / Login</a>
+                    </li>
+
+                    <li>
+                        <a href="HTML\login.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- we put the sidebar li elements outside the div because its fixed div and we wont be able to access these links -->
+    <ul class="side-nav" id="mobile-nav">
+        <li>
+            <a href="#popular">Popular Places</a>
+        </li>
+        <!-- <li>
+            <a href="html/places.html">Places</a>
+        </li> -->
+        <li>
+            <a href="#gallery">Gallery</a>
+        </li>
+        <li>
+            <a href="HTML/signup.html">Sign in / Login</a>
+        </li>
+
+        <li>
+            <a href="HTML\login.html">Contact</a>
+        </li>
+    </ul>
+
+    <!-- Section: Slider -->
+    <section class="slider">
+        <ul class="slides">
+            <li>
+                <img src="index-style/img/resort1.jpg" alt="resort1.jpg">
+                <div class="caption center-align">
+                    <h2>Take Your Dream Vacation</h2>
+                    <h5 class="light grey-text text-lighten-3 hide-on-small-only ">Adventure awaits, go find it.</h5>
+                    <a href="HTML\login.html" class="btn btn-large green">Contact Us</a>
+                </div>
+            </li>
+            <li>
+                <img src="index-style/img/resort2.jpg" alt="resort2.jpg">
+                <div class="caption left-align">
+                    <h2>We Work With All Budgets</h2>
+                    <h5 class="light grey-text text-lighten-3 hide-on-small-only ">Book a ticket and just leave.</h5>
+                    <a href="HTML\login.html" class="btn btn-large green">Contact Us</a>
+                </div>
+            </li>
+            <li>
+                <img src="index-style/img/resort3.jpg" alt="resort3.jpg">
+                <div class="caption right-align">
+                    <h2>Group & Individual Gataways</h2>
+                    <h5 class="light grey-text text-lighten-3 hide-on-small-only ">Experience. Tourism. These are as education in themselves.</h5>
+                    <a href="HTML\login.html" class="btn btn-large green">Contact Us</a>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Section: Search -->
+
+
+    <section id="search" class="section section-search green darken-1 white-text center scrollspy">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <h3>Search Destinations </h3>
+                    <form onsubmit="handleSearch(event)">
+                        <input type="text" class="white grey-text autocomplete" placeholder="Agra,Delhi,Jaipur,Haridwar,Mathura,Varanasi,Vrindhavan" id="autocomplete-input">
+                        <button type="submit" class="btn">Search</button>
+                    </form>
+                    
+                    <script>
+                        function handleSearch(event) {
+                            event.preventDefault(); // Prevent the default form submission
+                            const query = document.getElementById("autocomplete-input").value.trim();
+                            if (query=="Agra"||query=="Delhi"||query=="Haridwar"||query=="india"||query=="Jaipur"||query=="Mathura"||query=="Varanasi"||query=="Vrindhavan" ) {
+                                // Redirect to a specific URL for the search
+                                const searchUrl = `http://127.0.0.1:5500/HTML/cities/${encodeURIComponent(query)}.html`;
+                                window.location.href = searchUrl;
+                            }
+                            else{
+                                alert("Contact us for the destination");
+                                window.location.href ="contact.html"
+                            }
+                        }
+
+                        document.addEventListener("DOMContentLoaded", function () {
+                            // Mock data for autocomplete
+                            const destinations = ["Agra", "Manali", "Gulmohar", "Shimla", "Leh", "Jaipur", "Goa"];
+                            const input = document.getElementById("autocomplete-input");
+
+                            input.addEventListener("input", function () {
+                                const value = input.value.toLowerCase();
+                                const suggestions = destinations.filter(destination =>
+                                    destination.toLowerCase().startsWith(value)
+                                );
+                                showSuggestions(suggestions, input);
+                            });
+
+                            function showSuggestions(suggestions, inputElement) {
+                                clearSuggestions();
+
+                                if (!suggestions.length) return;
+
+                                const suggestionList = document.createElement("ul");
+                                suggestionList.className = "suggestion-list";
+
+                                suggestions.forEach(suggestion => {
+                                    const listItem = document.createElement("li");
+                                    listItem.textContent = suggestion;
+                                    listItem.addEventListener("click", () => {
+                                        inputElement.value = suggestion; // Fill the input with the selected suggestion
+                                        clearSuggestions();
+
+                                        // Redirect to the page for the selected suggestion
+                                        const suggestionUrl = `destination.html?query=${encodeURIComponent(suggestion)}`;
+                                        window.location.href = suggestionUrl;
+                                    });
+                                    suggestionList.appendChild(listItem);
+                                });
+
+                                inputElement.parentElement.appendChild(suggestionList);
+                            }
+
+                            function clearSuggestions() {
+                                const existingList = document.querySelector(".suggestion-list");
+                                if (existingList) existingList.remove();
+                            }
+                        });
+
+                    </script>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Icon Boxes -->
+    <section class="section section-icons grey lighten-4 center ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col s12 m4 ">
+                    <div class="card-panel ">
+                        <i class="material-icons large green-text ">room</i>
+                        <h4>Pick Where</h4>
+                        <p>Feed your wanderlust.</p>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card-panel">
+                        <i class="material-icons large green-text">store</i>
+                        <h4>Travel Shop</h4>
+                        <p>Answer it Royally.</p>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card-panel ">
+                        <i class="material-icons large green-text ">airplanemode_active</i>
+                        <h4>Fly Cheap</h4>
+                        <p>Dream. Explore. Discover.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Section: Popular -->
+
+    <section id="popular" class="section section-popular scrollspy ">
+        <div class="container ">
+            <div class="row ">
+                <h4 class="center ">
+                    <span class="green-text ">Popular</span> Places</h4>
+                <div class="col s12 m4 ">
+                    <div class="card ">
+                        <div class="card-image ">
+                            <img src="index-style/img/resort1.jpg " alt="resort1.jpg ">
+                            <span class="card-title ">GOA</span>
+                        </div>
+                        <div class="card-content ">
+                            <p>Sandy beaches, warm sunsets, beautiful villages and an atmosphere filled with joy .</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4 ">
+                    <div class="card ">
+                        <div class="card-image ">
+                            <img src="index-style/img/resort2.jpg " alt="resort2.jpg ">
+                            <span class="card-title ">Rameshwaram</span>
+                        </div>
+                        <div class="card-content ">
+                            <p>Rameshwaram is one of the holiest places in India and is located on a beautiful island. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4 ">
+                    <div class="card ">
+                        <div class="card-image ">
+                            <img src="index-style/img/resort3.jpg " alt="resort3.jpg ">
+                            <span class="card-title ">Manali</span>
+                        </div>
+                        <div class="card-content ">
+                            <p> Manali is seated comfortably in the River Beas Valley, Himachal Pradesh.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 center">
+                        <a href="HTML\login.html" class="btn btn-large blue darken-3">
+                            <i class="material-icons left">send</i>Contact for Booking
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Section: Follow -->
+
+    <section class="section section-follow green darken-2 white-text center">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <h4>Follow Tours And Travel</h4>
+                    <p>Follow us on social media for special offers.</p>
+                    <a href="https://facebook.com" target="_blank" class="white-text">
+                        <i class="fab fa-facebook fa-4x"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="white-text">
+                        <i class="fab fa-twitter fa-4x"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="white-text">
+                        <i class="fab fa-linkedin fa-4x"></i>
+                    </a>
+                    <a href="https://googleplus.com" target="_blank" class="white-text">
+                        <i class="fab fa-google-plus fa-4x"></i>
+                    </a>
+                    <a href="https://pinterest.com" target="_blank" class="white-text">
+                        <i class="fab fa-pinterest fa-4x"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Gallery -->
+
+    <section id="gallery" class="section section-gallery scrollspy">
+        <div class="container">
+            <h4 class="center">
+                <span class="teal-text">Photo</span> Gallery
+            </h4>
+            <div class="row">
+                <div class="col s12 m3">
+                    <!-- <img class="materialboxed responsive-img" src="https://source.unsplash.com/1600x900/?beach" alt=""> -->
+                    <img class="materialboxed responsive-img" src="places/beaches/Andaman.jpg" alt="">
+                </div>
+                <div class="col s12 m3">
+                    <img class="materialboxed responsive-img" src="places/goa/goa1.jpg" alt="">
+                </div>
+                <div class="col s12 m3">
+                    <img class="materialboxed responsive-img" src="places/Hill-Stations/KASOL.jpg" alt="">
+                </div>
+                <div class="col s12 m3">
+                    <img class="materialboxed responsive-img" src="places/Historical/Delhi/images/india-delhi-akshardham.jpg" alt="">
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col s12 m3">
+                    <img class="materialboxed responsive-img" src="https://source.unsplash.com/1600x900/?water" alt="">
+                </div>
+                <div class="col s12 m3">
+                    <img class="materialboxed responsive-img" src="https://source.unsplash.com/1600x900/?building" alt="">
+                </div>
+                <div class="col s12 m3">
+                    <img class="materialboxed responsive-img" src="https://source.unsplash.com/1600x900/?trees" alt="">
+                </div>
+                <div class="col s12 m3">
+                    <img class="materialboxed responsive-img" src="https://source.unsplash.com/1600x900/?cruise" alt="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m3">
+                    <img class="materialboxed responsive-img" src="https://source.unsplash.com/1600x900/?beaches" alt="">
+                </div>
+                <div class="col s12 m3">
+                    <img class="materialboxed responsive-img" src="https://source.unsplash.com/1600x900/?traveling" alt="">
+                </div>
+                <div class="col s12 m3">
+                    <img class="materialboxed responsive-img" src="https://source.unsplash.com/1600x900/?bridge" alt="">
+                </div>
+                <div class="col s12 m3">
+                    <img class="materialboxed responsive-img" src="https://source.unsplash.com/1600x900/?boat,travel" alt="">
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+    <button id="open-chat-btn" onclick="toggleChat()">💬</button>
+    <div id="chat-container">
+        <div id="chat-box"></div>
+        <input type="text" id="user-input" placeholder="Type your message here..." />
+        <button onclick="handleUserInput()">Send</button>
+    </div>
+
+    <script src="./Chatbot/chat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+
+    <!-- Footer section -->
+    <footer class="section green darken-1 white-text center">
+        <p class="flow-text">Tours And Travel &copy; 2024</p>
+    </footer>
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="index-style/materialize.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // INIT sidebar
+            $(".button-collapse").sidebar();
+
+            //INIT SLIDER
+            $(".slider").slider({
+                indicators: false,
+                height: 500,
+                transition: 500,
+                interval: 6000
+            });
+
+            //AUTOCOMPLETE
+            $(".autocomplete").autocomplete({
+                data: {
+                    "Aruba": null,
+                    "Cancun Mexico": null,
+                    "Hawaii": null,
+                    "Florida": null,
+                    "California": null,
+                    "Jamaica": null,
+                    "Europe": null,
+                    "The Bahamas": null
+                }
+            });
+
+            //INIT SCROLLSPY
+            $(".scrollspy").scrollSpy();
+
+        });
+
+        function login() {
+            alert("please signin to view in details.");
+        }
+    </script>
+</body>
+
+</html>

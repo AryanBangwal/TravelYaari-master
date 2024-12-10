@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us | Tours And Travels</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="../CSS/nav1.css">
+    <link rel="stylesheet" href="../CSS/contact.css">
+    <link rel="stylesheet" href="../CSS/footer.css">
+    <style>
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                   
+          </button>
+                <a class="navbar-brand" href="home.html" style="font-weight: bold;font-family: 'Piedra', cursive;">Tours And Travels</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="w" href="gallery.html">Gallery</a></li>
+                    <li><a class="w" href="../index.html" onclick="alert('you are about to logout.click OK to Continue')">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
+                    <li style="margin: 0.8rem 0.8rem auto 0.3rem; background:#4caf50;"><button class="btn btn-success navbar-btn" onclick="history.back();">Return</button></li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container" id="banner1">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Contact Us for booking</h3>
+                        <i class="fa fa-envelope" aria-hidden="true" style="font-size:50px"></i>
+                    </div>
+                    <div class="panel-body">
+                        <ul>
+                            <li>
+                                <h4>Location =></h4>
+                            </li>
+                            <li>Dehradun</li>
+                            <li>Clement town</li>
+                            <li>Graphic era</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 " id="gray">
+                <h3 style="text-shadow: 2px 2px 4px black;">Please Fill Out this Form</h3>
+
+                <!-- backend required -->
+                <form id="contact-id" method="POST" action="../index.html">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="names" name="name" placeholder="Name" required="true" pattern=".{1,}">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="emails" name="email" placeholder="Email" required="true" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contact No.</label>
+                        <input type="text" id="contacts" name="contact" placeholder="Contact" required="true" pattern=".{10}">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <input type="text" id="messages" name="message" placeholder="message">
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" type="submit" value="Submit" name="button">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+   
+    <div id="foot"></div>
+    <script>
+        $(document).ready(function() {
+
+            $('#foot').load("footer.html");
+
+        });
+
+        document
+        .getElementById("contact-id")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault(); // Prevent form submission from refreshing the page
+          const name = document.getElementById("names").value;
+          const email = document.getElementById("emails").value;
+          const contact = document.getElementById("contacts").value;
+          const message = document.getElementById("messages").value;
+
+          try {
+            const response = await fetch("http://localhost:3000/contact", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name,email,contact,message }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              alert("Submission successful!");
+              window.location.href = "home.html"; // Redirect to home page after successful login
+            } else {
+              alert(`Submission failed: ${data.error}`);
+            }
+          } catch (error) {
+            console.error("Error during Submission:", error);
+            alert("Something went wrong!");
+          }
+        });
+    </script>
+
+
+</body>
+
+</html>
